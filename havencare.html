@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Havencare Hospital App – Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Havencare Hospital App</h1>
+    <p>Eye Clinic UX/UI Screens</p>
+  </header>
+
+  <div class="Havencare-Gallery">
+    <img src="Havencare-Gallery/Appointment-2.jpg" alt="Havencare 1">
+    <img src="Havencare-Gallery/Appointment.jpg" alt="Havencare 2">
+    <img src="Havencare-Gallery/Appointment.png" alt="Havencare 3">
+    <img src="Havencare-Gallery/Desktop - 16.png" alt="Havencare 4">
+    <img src="Havencare-Gallery/Desktop - 17.png" alt="Havencare 5">
+    <img src="Havencare-Gallery/Doctors-2.png" alt="Havencare 6">
+    <img src="Havencare-Gallery/Doctors-3.png" alt="Havencare 7">
+    <img src="Havencare-Gallery/Doctors-4.png" alt="Havencare 8">
+    <img src="Havencare-Gallery/Doctors.png" alt="Havencare 9">
+    <img src="Havencare-Gallery/Frame 1.jpg" alt="Havencare 10">
+    <img src="Havencare-Gallery/Frame 794.png" alt="Havencare 11">
+    <img src="Havencare-Gallery/Overview-2.png" alt="Havencare 12">
+    <img src="Havencare-Gallery/Overview.png" alt="Havencare 13">
+    <img src="Havencare-Gallery/Section 1.jpg" alt="Havencare 14">
+    <img src="Havencare-Gallery/settings.png" alt="Havencare 15">
+    <img src="Havencare-Gallery/Sign In.jpg" alt="Havencare 16">
+  </div>
+
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <span class="next">&#10095;</span>
+  </div>
+  
+  
+
+  <a href="index.html" class="back-link">⬅ Back to Portfolio</a>
+
+  <footer>
+    <p>© 2025 Prince Isaac Adeneye | Portfolio</p>
+  </footer>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".lightbox .close");
+    const nextBtn = document.querySelector(".lightbox .next");
+    const prevBtn = document.querySelector(".lightbox .prev");
+    const galleryImages = document.querySelectorAll(".Havencare-Gallery img");
+
+    let currentIndex = 0;
+
+    // Open lightbox
+    galleryImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        currentIndex = index;
+      });
+    });
+
+    // Close with X
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    // Close when clicking outside image
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+    // Next button
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Prev button
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Keyboard controls
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowRight") {
+          nextBtn.click();
+        } else if (e.key === "ArrowLeft") {
+          prevBtn.click();
+        } else if (e.key === "Escape") {
+          closeBtn.click();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
