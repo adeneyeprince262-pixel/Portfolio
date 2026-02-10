@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upfront Access Limited – Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Upfront Access Limited</h1>
+    <p>Corporate Website & Digital Solutions</p>
+  </header>
+
+  <section>
+    <p>
+      Upfront Access Limited is a company I collaborated with to design and develop 
+      a professional website tailored to their corporate brand. I worked on the 
+      site’s structure, layout, and responsive design, ensuring it delivered a 
+      polished and user-friendly experience.
+    </p>
+  </section>
+
+  <div class="gallery">
+    <figure>
+      <img src="Upfront-Access-Limited/Home.jpeg" alt="Home Page">
+      <figcaption>Home Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/About.jpeg" alt="About Page">
+      <figcaption>About Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/Services.jpeg" alt="Services Page">
+      <figcaption>Services Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/Loan.jpeg" alt="Loan Page">
+      <figcaption>Loan Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/Blog.jpeg" alt="Blog Page">
+      <figcaption>Blog Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/Careers.jpeg" alt="Careers Page">
+      <figcaption>Careers Page</figcaption>
+    </figure>
+    <figure>
+      <img src="Upfront-Access-Limited/Contact.jpeg" alt="Contact Page">
+      <figcaption>Contact Page</figcaption>
+    </figure>
+  </div>
+  
+
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <span class="next">&#10095;</span>
+  </div>
+
+  <a href="index.html" class="back-link">⬅ Back to Portfolio</a>
+
+  <footer>
+    <p>© 2025 Prince Isaac Adeneye | Portfolio</p>
+  </footer>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".lightbox .close");
+    const nextBtn = document.querySelector(".lightbox .next");
+    const prevBtn = document.querySelector(".lightbox .prev");
+    const galleryImages = document.querySelectorAll(".gallery img");
+    let currentIndex = 0;
+
+    // Open lightbox
+    galleryImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        currentIndex = index;
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+      });
+    });
+
+    // Close
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    // Background click
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+    // Next
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Prev
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Keyboard support
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowRight") nextBtn.click();
+        if (e.key === "ArrowLeft") prevBtn.click();
+        if (e.key === "Escape") closeBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>

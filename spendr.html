@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spendr – Personal Finance App | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Spendr – Personal Finance App</h1>
+    <p>UI/UX Case Study: Budgeting & Expense Tracking</p>
+  </header>
+
+  <section>
+    <p>
+      <strong>Spendr</strong> is a personal UI/UX design project I created to help 
+      users take control of their finances. The app focuses on <em>budgeting</em>, 
+      <em>expense tracking</em>, and <em>goal monitoring</em>, with a clean and 
+      intuitive interface. I designed user flows, wireframes, and high-fidelity 
+      mockups to demonstrate how users can visualize their spending and make 
+      informed decisions.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <div class="gallery">
+      <img src="Spendr-Gallery/Group 1.png" alt="Spendr 1">
+      <img src="Spendr-Gallery/Desktop - 2.png" alt="Spendr 2">
+      <img src="Spendr-Gallery/Desktop - 3.png" alt="Spendr 3">
+      <img src="Spendr-Gallery/Desktop - 4.png" alt="Spendr 4">
+      <img src="Spendr-Gallery/Desktop - 5.png" alt="Spendr 5">
+      <img src="Spendr-Gallery/Desktop - 6.png" alt="Spendr 6">
+      <img src="Spendr-Gallery/Desktop - 7.png" alt="Spendr 7">
+      <img src="Spendr-Gallery/Desktop - 1.png" alt="Spendr 8">
+      <img src="Spendr-Gallery/Group 10.png" alt="Spendr 9">
+      <img src="Spendr-Gallery/Group 633118.png" alt="Spendr 10">
+      <img src="Spendr-Gallery/Group 633122.png" alt="Spendr 11">
+      <img src="Spendr-Gallery/Group 633119.png" alt="Spendr 12">
+      <img src="Spendr-Gallery/Group 633123.png" alt="Spendr 13">
+      <img src="Spendr-Gallery/Group 633120.png" alt="Spendr 14">
+      <img src="Spendr-Gallery/Desktop - 1-1.png" alt="Spendr 15">
+      <img src="Spendr-Gallery/Desktop - 2-1.png" alt="Spendr 16">
+      <img src="Spendr-Gallery/Desktop - 8.png" alt="Spendr 17">
+      <img src="Spendr-Gallery/Desktop - 9.png" alt="Spendr 18">
+      <img src="Spendr-Gallery/Desktop - 10.png" alt="Spendr 19">
+      <img src="Spendr-Gallery/Desktop - 11.png" alt="Spendr 20">
+      <img src="Spendr-Gallery/Desktop - 12.png" alt="Spendr 21">
+      <img src="Spendr-Gallery/Desktop - 13.png" alt="Spendr 22">
+      <img src="Spendr-Gallery/Desktop - 14.png" alt="Spendr 23">
+      <img src="Spendr-Gallery/Desktop - 15.png" alt="Spendr 24">
+      <img src="Spendr-Gallery/Desktop - 16.png" alt="Spendr 25">
+      <img src="Spendr-Gallery/Desktop - 17.png" alt="Spendr 26">
+      <img src="Spendr-Gallery/Desktop - 18.png" alt="Spendr 27">
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <span class="next">&#10095;</span>
+  </div>
+
+  <a href="index.html" class="back-link">⬅ Back to Portfolio</a>
+
+  <footer>
+    <p>© 2025 Prince Isaac Adeneye | Portfolio</p>
+  </footer>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".lightbox .close");
+    const nextBtn = document.querySelector(".lightbox .next");
+    const prevBtn = document.querySelector(".lightbox .prev");
+    const galleryImages = document.querySelectorAll(".gallery img");
+
+    let currentIndex = 0;
+
+    // Open lightbox
+    galleryImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        currentIndex = index;
+      });
+    });
+
+    // Close
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    // Background click
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+    // Next
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Prev
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Keyboard controls
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowRight") nextBtn.click();
+        if (e.key === "ArrowLeft") prevBtn.click();
+        if (e.key === "Escape") closeBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>

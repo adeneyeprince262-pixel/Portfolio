@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphic Design's – Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Graphic Design's</h1>
+    <p>Design's</p>
+  </header>
+
+  <div class="Havencare-Gallery">
+    <img src="Graphicdesigns-Gallery/Newweek2 copy.png" alt="Havencare 15">
+    <img src="Graphicdesigns-Gallery/2.png" alt="Havencare 2">
+    <img src="Graphicdesigns-Gallery/NewWeekupfront.png" alt="Havencare 9">
+    <img src="Graphicdesigns-Gallery/TGIFUPFRONT2.png" alt="Havencare 10">
+    <img src="Graphicdesigns-Gallery/8.png" alt="Havencare 8">
+    <img src="Graphicdesigns-Gallery/4.png" alt="Havencare 4">
+    <img src="Graphicdesigns-Gallery/5.png" alt="Havencare 5">
+    <img src="Graphicdesigns-Gallery/6.png" alt="Havencare 6">
+    <img src="Graphicdesigns-Gallery/7.png" alt="Havencare 7">
+    <img src="Graphicdesigns-Gallery/3.png" alt="Havencare 3">
+    <img src="Graphicdesigns-Gallery/Upfront new month fixed one.png" alt="Havencare 11">
+    <img src="Graphicdesigns-Gallery/Upfrontval.png" alt="Havencare 12">
+    <img src="Graphicdesigns-Gallery/whyupfront.png" alt="Havencare 13">
+    <img src="Graphicdesigns-Gallery/WithIG.png" alt="Havencare 14">
+    <img src="Graphicdesigns-Gallery/1.png" alt="Havencare 1">
+  </div>
+
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <span class="next">&#10095;</span>
+  </div>
+  
+  
+
+  <a href="index.html" class="back-link">⬅ Back to Portfolio</a>
+
+  <footer>
+    <p>© 2026 Prince Isaac Adeneye | Portfolio</p>
+  </footer>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".lightbox .close");
+    const nextBtn = document.querySelector(".lightbox .next");
+    const prevBtn = document.querySelector(".lightbox .prev");
+    const galleryImages = document.querySelectorAll(".Havencare-Gallery img");
+
+    let currentIndex = 0;
+
+    // Open lightbox
+    galleryImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        currentIndex = index;
+      });
+    });
+
+    // Close with X
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    // Close when clicking outside image
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+    // Next button
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Prev button
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    });
+
+    // Keyboard controls
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowRight") {
+          nextBtn.click();
+        } else if (e.key === "ArrowLeft") {
+          prevBtn.click();
+        } else if (e.key === "Escape") {
+          closeBtn.click();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
